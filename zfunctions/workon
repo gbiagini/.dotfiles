@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [[ $# -eq 0 ]]; then 
+  conda env list
+else
+  mamba activate $1
+fi

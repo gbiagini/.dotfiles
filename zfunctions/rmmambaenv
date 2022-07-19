@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [[ $# -eq 0 ]]; then 
+  echo "ERROR - supply name of environment to remove"
+else
+  conda env remove -n $1
+fi
