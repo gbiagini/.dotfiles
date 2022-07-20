@@ -1,6 +1,7 @@
 set guicursor=a:blinkon100
 set ruler
 set backspace=indent,eol,start
+set t_Co=256
 let &t_SI="\e[1 q"
 let &t_SR="\e[1 q"
 let &t_EI="\e[1 q"
