@@ -1,11 +1,11 @@
 set guicursor=a:blinkon100
 set ruler
 set backspace=indent,eol,start
-set t_Co=256
 let &t_SI="\e[1 q"
 let &t_SR="\e[1 q"
 let &t_EI="\e[1 q"
 
+set t_Co=16
 set nocompatible              " required
 filetype off                  " required
 
@@ -31,6 +31,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-python/python-syntax'
 Plug 'sheerun/vim-polyglot'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 call plug#end()
 
@@ -159,3 +161,13 @@ let g:ale_fixers = {
       \}
 nmap <F10> :ALEFix<CR>
 let g:ale_fix_on_save = 1
+
+nmap <silent> xl <cmd>call coc#rpc#request('fillDiagnostics', [bufnr('%')])<CR><cmd>TroubleToggle loclist<CR>`
+
+lua << EOF
+  require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF

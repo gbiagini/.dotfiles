@@ -116,6 +116,7 @@ export CYPRESS="dbiagini@cypress1.tulane.edu"
 export CYPRESS2="dbiagini@cypress2.tulane.edu"
 export QB2="retr0@qb.loni.org"
 export QB3="retr0@qbc.loni.org"
+export TERM="screen-256color"
 
 # Turn off shared history between tmux panes
 setopt nosharehistory
