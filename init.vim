@@ -4,6 +4,9 @@ set backspace=indent,eol,start
 let &t_SI="\e[1 q"
 let &t_SR="\e[1 q"
 let &t_EI="\e[1 q"
+colorscheme cyberpunk-neon
+hi normal guibg=NONE ctermbg=NONE
+hi clear SignColumn
 
 set t_Co=16
 set nocompatible              " required
