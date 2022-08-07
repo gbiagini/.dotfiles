@@ -117,6 +117,7 @@ export CYPRESS2="dbiagini@cypress2.tulane.edu"
 export QB2="retr0@qb.loni.org"
 export QB3="retr0@qbc.loni.org"
 export TERM="screen-256color"
+export PATH="$PATH:/usr/bin/node"
 
 # Turn off shared history between tmux panes
 setopt nosharehistory
@@ -131,7 +132,7 @@ export PATH="$PATH:/home/retr0/.local/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/retr0/.mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/retr0/.mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -155,6 +156,3 @@ source ~/.zaliases
 fpath=(~/.zfunctions $fpath);
 autoload -U $fpath[1]/*(.:t)
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

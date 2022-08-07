@@ -12,6 +12,7 @@ set t_Co=16
 set nocompatible              " required
 filetype off                  " required
 
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-syntastic/syntastic'
@@ -47,7 +48,7 @@ set colorcolumn=80
 
 let g:python_highlight_all = 1
 let g:SimpylFold_docstring_preview=1
-let g:coc_node_path = '/home/retr0/.nvm/versions/node/v18.5.0/bin/node'
+let g:coc_node_path = '/usr/bin/node'
 "let g:conda_startup_msg_suppress = 1
 
 
@@ -165,6 +166,17 @@ let g:ale_fixers = {
 nmap <F10> :ALEFix<CR>
 let g:ale_fix_on_save = 1
 
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+
+  " Insert <tab> when previous text is space, refresh completion if not.
+  inoremap <silent><expr> <TAB>
+	\ coc#pum#visible() ? coc#pum#next(1):
+	\ <SID>check_back_space() ? "\<Tab>" :
+	\ coc#refresh()
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 nmap <silent> xl <cmd>call coc#rpc#request('fillDiagnostics', [bufnr('%')])<CR><cmd>TroubleToggle loclist<CR>`
 
 lua << EOF
