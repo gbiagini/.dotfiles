@@ -66,7 +66,6 @@ nnoremap <C-H> <C-W><C-H>
 set foldmethod=indent
 set foldlevel=99
 
-let NERDTreeWinSize = 19
 
 " Enable folding with the spacebar
 nnoremap <space> za
@@ -87,8 +86,6 @@ au FileType snakemake autocmd BufWritePre <buffer> execute ':Snakefmt'
 let python_highlight_all=1
 syntax on
 syntax enable
-
-let g:pymode_lint_on_write = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
@@ -165,6 +162,8 @@ let g:ale_fix_on_save = 1
   inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 nmap <silent> xl <cmd>call coc#rpc#request('fillDiagnostics', [bufnr('%')])<CR><cmd>TroubleToggle loclist<CR>`
 
+"nvim-tree remaps
+noremap <C-t> :NvimTreeToggle<CR>
 
 lua << EOF
   require("trouble").setup {
@@ -174,6 +173,8 @@ lua << EOF
   }
   require("nvim-tree").setup({
   sort_by = "case_sensitive",
+  open_on_setup = true,
+  open_on_setup_file = true,
   view = {
     adaptive_size = true,
     mappings = {
@@ -188,5 +189,13 @@ lua << EOF
   filters = {
     dotfiles = true,
   },
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("NvimTreeClose", {clear = true}),
+  pattern = "NvimTree_*",
+  callback = function()
+    local layout = vim.api.nvim_call_function("winlayout", {})
+    if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then vim.cmd("confirm quit") end
+  end
 })
 EOF
