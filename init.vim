@@ -17,8 +17,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tmhedberg/SimpylFold'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -91,21 +92,6 @@ let g:pymode_lint_on_write = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-set nu
-
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-autocmd BufWinEnter * NERDTree | wincmd p
-
-" auto exit NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "let g:indentLine_setColors = 0
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -179,10 +165,28 @@ let g:ale_fix_on_save = 1
   inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 nmap <silent> xl <cmd>call coc#rpc#request('fillDiagnostics', [bufnr('%')])<CR><cmd>TroubleToggle loclist<CR>`
 
+
 lua << EOF
   require("trouble").setup {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
   }
+  require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
 EOF
