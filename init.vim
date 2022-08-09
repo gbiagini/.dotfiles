@@ -15,13 +15,11 @@ filetype off                  " required
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'vim-syntastic/syntastic'
-Plug 'nvie/vim-flake8'
+"Plug 'nvie/vim-flake8'
 Plug 'tpope/vim-fugitive'
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tmhedberg/SimpylFold'
-Plug 'ryanoasis/vim-devicons'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/snakemake/snakemake.git', {'rtp': 'misc/vim/'}
 Plug 'snakemake/snakefmt'
@@ -36,7 +34,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-python/python-syntax'
 Plug 'sheerun/vim-polyglot'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
 call plug#end()
