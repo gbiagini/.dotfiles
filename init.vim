@@ -173,7 +173,8 @@ lua << EOF
   open_on_setup = true,
   open_on_setup_file = true,
   view = {
-    adaptive_size = true,
+    ---adaptive_size = true,
+    width = 20,
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
