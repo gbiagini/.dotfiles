@@ -77,9 +77,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
-ZSH_TMUX_AUTOSTART=true
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -116,7 +113,7 @@ export CYPRESS="dbiagini@cypress1.tulane.edu"
 export CYPRESS2="dbiagini@cypress2.tulane.edu"
 export QB2="retr0@qb.loni.org"
 export QB3="retr0@qbc.loni.org"
-export TERM="screen-256color"
+export TERM="xterm-256color"
 export PATH="$PATH:/usr/bin/node"
 
 # Turn off shared history between tmux panes
