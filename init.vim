@@ -1,8 +1,6 @@
-"set guicursor=a:blinkon100
+set guicursor=a:blinkon100
 set ruler
 set backspace=indent,eol,start
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
-set guicursor=
 "let &t_SI="\e[2 q"
 "let &t_SR="\e[1 q"
 "let &t_EI="\e[1 q"
