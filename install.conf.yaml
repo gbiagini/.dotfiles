@@ -12,7 +12,6 @@
     ~/.config/nvim/init.vim: init.vim
     ~/.condarc: condarc
     ~/.p10k.zsh: p10k.zsh
-    ~/.tmux.conf.local: tmux.conf.local
     ~/.zfunctions: zfunctions
     ~/.config/nvim/colors: colors
 ...
