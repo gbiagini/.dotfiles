@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/retr0/.oh-my-zsh"
+export ZSH="/home/nomad/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -111,8 +111,8 @@ export WINFS="/mnt/c/Users/giobi/"
 export DJANGO_DEVELOPMENT='true'
 export CYPRESS="dbiagini@cypress1.tulane.edu"
 export CYPRESS2="dbiagini@cypress2.tulane.edu"
-export QB2="retr0@qb.loni.org"
-export QB3="retr0@qbc.loni.org"
+export QB2="nomad@qb.loni.org"
+export QB3="nomad@qbc.loni.org"
 export TERM="xterm-256color"
 export PATH="$PATH:/usr/bin/node"
 
@@ -122,27 +122,27 @@ setopt nosharehistory
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
-export PATH="$PATH:/home/retr0/.local/bin"
+export PATH="$PATH:/home/nomad/.local/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/retr0/.mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/nomad/.mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/retr0/.mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/retr0/.mambaforge/etc/profile.d/conda.sh"
+    if [ -f "/home/nomad/.mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/nomad/.mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="/home/retr0/.mambaforge/bin:$PATH"
+        export PATH="/home/nomad/.mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/home/retr0/.mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/retr0/.mambaforge/etc/profile.d/mamba.sh"
+if [ -f "/home/nomad/.mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/nomad/.mambaforge/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
 
