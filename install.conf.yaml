@@ -9,9 +9,7 @@
 - link:
     ~/.zshrc: zshrc
     ~/.zaliases: zaliases
-    ~/.config/nvim/init.vim: init.vim
     ~/.condarc: condarc
     ~/.p10k.zsh: p10k.zsh
     ~/.zfunctions: zfunctions
-    ~/.config/nvim/colors: colors
 ...
