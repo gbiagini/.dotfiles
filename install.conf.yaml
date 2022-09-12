@@ -12,4 +12,5 @@
     ~/.condarc: condarc
     ~/.p10k.zsh: p10k.zsh
     ~/.zfunctions: zfunctions
+    ~/.vimrc: vimrc
 ...
