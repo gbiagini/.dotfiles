@@ -114,7 +114,7 @@ export CYPRESS2="dbiagini@cypress2.tulane.edu"
 export QB2="nomad@qb.loni.org"
 export QB3="nomad@qbc.loni.org"
 export TERM="xterm-256color"
-export PATH="$PATH:/usr/bin/node"
+export PATH="$PATH:/usr/bin/tex:/usr/bin/pdflatex:/usr/bin/latexmk"
 
 # Turn off shared history between tmux panes
 setopt nosharehistory
