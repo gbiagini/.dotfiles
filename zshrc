@@ -134,6 +134,9 @@ export PATH="$PATH:/usr/bin/latexmk"
 # CUSTOM ALIASES
 source ~/.zaliases
 
-fpath=(~/.zfunctions $fpath);
-autoload -U $fpath[1]/*(.:t)
+# VIRTUALENVWRAPPER
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.venvs
+export PROJECT_HOME=$HOME/dev
+source /usr/local/bin/virtualenvwrapper.sh
 

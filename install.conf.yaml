@@ -9,8 +9,6 @@
 - link:
     ~/.zshrc: zshrc
     ~/.zaliases: zaliases
-    ~/.condarc: condarc
     ~/.p10k.zsh: p10k.zsh
-    ~/.zfunctions: zfunctions
     ~/.vimrc: vimrc
 ...
