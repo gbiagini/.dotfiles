@@ -11,4 +11,5 @@
     ~/.zaliases: zaliases
     ~/.p10k.zsh: p10k.zsh
     ~/.vimrc: vimrc
+    ~/.nvim/init.vim: init.vim
 ...
