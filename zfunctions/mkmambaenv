@@ -1,0 +1,35 @@
+#!/bin/sh
+
+proj="$PWD"
+fname="none"
+while getopts ":n:a:r:" opt; do
+  case $opt in
+    n) name="$OPTARG"
+    ;;
+    a) proj="$OPTARG"
+    ;;
+    r) fname=`realpath $OPTARG`
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    return 1
+    ;;;
+  esac
+done
+
+readonly name=${name:?"Environment name must be specified."}
+
+if [ $fname = "none" ]; then 
+  mamba create -n $name
+else
+  [ -f "$fname" ] || "File $fname does not exist" || return 1
+  mamba env create --name $name --file $fname
+fi
+
+[ -d "$proj" ] || "Directory $proj does not exist" || return 1
+
+mkdir -p ~/.mambaforge/envs/$name/etc/conda/activate.d
+mkdir -p ~/.mambaforge/envs/$name/etc/conda/deactivate.d
+
+touch ~/.mambaforge/envs/$name/etc/conda/activate.d/set_wd.sh ; echo "cd $proj" > ~/.mambaforge/envs/$name/etc/conda/activate.d/set_wd.sh
+touch ~/.mambaforge/envs/$name/etc/conda/deactivate.d/unset_wd.sh ; echo "cd" > ~/.mambaforge/envs/$name/etc/conda/deactivate.d/unset_wd.sh
+mamba activate $name

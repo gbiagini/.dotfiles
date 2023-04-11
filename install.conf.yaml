@@ -11,4 +11,5 @@
     ~/.zaliases: zaliases
     ~/.p10k.zsh: p10k.zsh
     ~/.vimrc: vimrc
+    ~/.zfunctions: zfunctions
 ...

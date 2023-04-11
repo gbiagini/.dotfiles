@@ -77,6 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+plugins=(zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -134,11 +135,27 @@ export PATH="$PATH:/usr/bin/latexmk"
 # CUSTOM ALIASES
 source ~/.zaliases
 
-# VIRTUALENVWRAPPER
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME=$HOME/.venvs
-export PROJECT_HOME=$HOME/dev
-source /usr/local/bin/virtualenvwrapper.sh
-
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
 [[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/nomad/.mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nomad/.mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/nomad/.mambaforge/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nomad/.mambaforge/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/home/nomad/.mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/nomad/.mambaforge/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+fpath=(~/.zfunctions $fpath);
+autoload -U $fpath[1]/*(.:t)
