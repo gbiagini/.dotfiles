@@ -115,7 +115,6 @@ export CYPRESS2="dbiagini@cypress2.tulane.edu"
 export QB2="nomad@qb.loni.org"
 export QB3="nomad@qbc.loni.org"
 export TERM="xterm-256color"
-export PATH="$PATH:/usr/bin/tex:/usr/bin/pdflatex:/usr/bin/latexmk"
 
 # Turn off shared history between tmux panes
 setopt nosharehistory
@@ -124,9 +123,6 @@ setopt nosharehistory
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 export PATH="$PATH:/home/nomad/.local/bin"
-export PATH="$PATH:/usr/bin/tex"
-export PATH="$PATH:/usr/bin/pdflatex"
-export PATH="$PATH:/usr/bin/latexmk"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
