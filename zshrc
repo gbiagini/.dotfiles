@@ -115,6 +115,7 @@ export CYPRESS2="dbiagini@cypress2.tulane.edu"
 export QB2="nomad@qb.loni.org"
 export QB3="nomad@qbc.loni.org"
 export TERM="xterm-256color"
+export MAMBA_NO_LOW_SPEED_LIMIT=1
 
 # Turn off shared history between tmux panes
 setopt nosharehistory
