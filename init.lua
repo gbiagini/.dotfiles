@@ -69,16 +69,20 @@ vim.o.termguicolors = true
 --vim.cmd.colorscheme("cyberpunk-neon")
 
 --Set statusbar
-require('lualine').setup {
-    options = {
-        icons_enabled = false,
-        component_separators = '|',
-        section_separators = '',
-    },
-}
+if not vim.g.vscode then
+    require('lualine').setup {
+        options = {
+            icons_enabled = false,
+            component_separators = '|',
+            section_separators = '',
+        },
+    }
+end
 
 --Enable Comment.nvim
-require('Comment').setup()
+if not vim.g.vscode then
+    require('Comment').setup()
+end
 
 --Remap space as leader key
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -100,46 +104,56 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 --Disable numbers in terminal mode
-require('indent_blankline').setup {
-    char = '┊',
-    filetype_exclude = { 'help' },
-    buftype_exclude = { 'terminal', 'nofile' },
-    show_trailing_blankline_indent = false,
-}
+if not vim.g.vscode then
+    require('indent_blankline').setup {
+        char = '┊',
+        filetype_exclude = { 'help' },
+        buftype_exclude = { 'terminal', 'nofile' },
+        show_trailing_blankline_indent = false,
+    }
+end
 
 -- Gitsigns
-require('gitsigns').setup {
-    signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-    },
-    on_attach = function(bufnr)
-        vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr })
-        vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr })
-    end,
-}
+if not vim.g.vscode then
+    require('gitsigns').setup {
+        signs = {
+            add = { text = '+' },
+            change = { text = '~' },
+            delete = { text = '_' },
+            topdelete = { text = '‾' },
+            changedelete = { text = '~' },
+        },
+        on_attach = function(bufnr)
+            vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr })
+            vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr })
+        end,
+    }
+end
 
 -- Oil
-require('oil').setup()
-vim.keymap.set('n', '-', function() require('oil').open() end, { desc = 'Open parent directory' })
+if not vim.g.vscode then
+    require('oil').setup()
+    vim.keymap.set('n', '-', function() require('oil').open() end, { desc = 'Open parent directory' })
+end
 
 -- Telescope
-require('telescope').setup {
-    defaults = {
-        mappings = {
-            i = {
-                ['<C-u>'] = false,
-                ['<C-d>'] = false,
+if not vim.g.vscode then
+    require('telescope').setup {
+        defaults = {
+            mappings = {
+                i = {
+                    ['<C-u>'] = false,
+                    ['<C-d>'] = false,
+                },
             },
         },
-    },
-}
+    }
+end
 
 -- Enable telescope fzf native
-require('telescope').load_extension 'fzf'
+if not vim.g.vscode then
+    require('telescope').load_extension 'fzf'
+end
 
 --Add leader shortcuts
 vim.keymap.set('n', '<leader><space>', function() require('telescope.builtin').buffers { sort_lastused = true } end)
@@ -153,67 +167,69 @@ vim.keymap.set('n', '<leader>?', function() require('telescope.builtin').oldfile
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
-require('nvim-treesitter.configs').setup {
-    highlight = {
-        enable = true, -- false will disable the whole extension
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = '<c-space>',
-            node_incremental = '<c-space>',
-            scope_incremental = '<c-s>',
-            node_decremental = '<M-space>',
+if not vim.g.vscode then
+    require('nvim-treesitter.configs').setup {
+        highlight = {
+            enable = true, -- false will disable the whole extension
         },
-    },
-    indent = {
-        enable = true,
-    },
-    textobjects = {
-        select = {
+        incremental_selection = {
             enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ['aa'] = '@parameter.outer',
-                ['ia'] = '@parameter.inner',
-                ['af'] = '@function.outer',
-                ['if'] = '@function.inner',
-                ['ac'] = '@class.outer',
-                ['ic'] = '@class.inner',
+                init_selection = '<c-space>',
+                node_incremental = '<c-space>',
+                scope_incremental = '<c-s>',
+                node_decremental = '<M-space>',
             },
         },
-        move = {
+        indent = {
             enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-                [']m'] = '@function.outer',
-                [']]'] = '@class.outer',
+        },
+        textobjects = {
+            select = {
+                enable = true,
+                lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+                keymaps = {
+                    -- You can use the capture groups defined in textobjects.scm
+                    ['aa'] = '@parameter.outer',
+                    ['ia'] = '@parameter.inner',
+                    ['af'] = '@function.outer',
+                    ['if'] = '@function.inner',
+                    ['ac'] = '@class.outer',
+                    ['ic'] = '@class.inner',
+                },
             },
-            goto_next_end = {
-                [']M'] = '@function.outer',
-                [']['] = '@class.outer',
+            move = {
+                enable = true,
+                set_jumps = true, -- whether to set jumps in the jumplist
+                goto_next_start = {
+                    [']m'] = '@function.outer',
+                    [']]'] = '@class.outer',
+                },
+                goto_next_end = {
+                    [']M'] = '@function.outer',
+                    [']['] = '@class.outer',
+                },
+                goto_previous_start = {
+                    ['[m'] = '@function.outer',
+                    ['[['] = '@class.outer',
+                },
+                goto_previous_end = {
+                    ['[M'] = '@function.outer',
+                    ['[]'] = '@class.outer',
+                },
             },
-            goto_previous_start = {
-                ['[m'] = '@function.outer',
-                ['[['] = '@class.outer',
-            },
-            goto_previous_end = {
-                ['[M'] = '@function.outer',
-                ['[]'] = '@class.outer',
+            swap = {
+                enable = true,
+                swap_next = {
+                    ['<leader>a'] = '@parameter.inner',
+                },
+                swap_previous = {
+                    ['<leader>A'] = '@parameter.inner',
+                },
             },
         },
-        swap = {
-            enable = true,
-            swap_next = {
-                ['<leader>a'] = '@parameter.inner',
-            },
-            swap_previous = {
-                ['<leader>A'] = '@parameter.inner',
-            },
-        },
-    },
-}
+    }
+end
 
 -- Diagnostic settings
 vim.diagnostic.config {
@@ -229,96 +245,100 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>Q', vim.diagnostic.setqflist)
 
 -- LSP settings
-require('mason').setup {}
-require('mason-lspconfig').setup()
+if not vim.g.vscode then
+    require('mason').setup {}
+    require('mason-lspconfig').setup()
+end
 
 -- Add nvim-lspconfig plugin
-local lspconfig = require 'lspconfig'
-local on_attach = function(_, bufnr)
-    local attach_opts = { silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, attach_opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, attach_opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, attach_opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, attach_opts)
-    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, attach_opts)
-    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, attach_opts)
-    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, attach_opts)
-    vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-        attach_opts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, attach_opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
-    vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
-end
-
--- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
+if not vim.g.vscode then
+    local lspconfig = require 'lspconfig'
+    local on_attach = function(_, bufnr)
+        local attach_opts = { silent = true, buffer = bufnr }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, attach_opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, attach_opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, attach_opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, attach_opts)
+        vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, attach_opts)
+        vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, attach_opts)
+        vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, attach_opts)
+        vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+            attach_opts)
+        vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, attach_opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
+        vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
+    end
+    
+    -- nvim-cmp supports additional completion capabilities
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    
+    -- Enable the following language servers
+    local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+    for _, lsp in ipairs(servers) do
+        lspconfig[lsp].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+    end
+    
+    lspconfig.lua_ls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
-    }
-end
-
-lspconfig.lua_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            completion = {
-                callSnippet = 'Replace',
+        settings = {
+            Lua = {
+                completion = {
+                    callSnippet = 'Replace',
+                },
             },
         },
-    },
-}
-
--- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-
-luasnip.config.setup {}
-
-cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+    }
+    
+    -- nvim-cmp setup
+    local cmp = require 'cmp'
+    local luasnip = require 'luasnip'
+    
+    luasnip.config.setup {}
+    
+    cmp.setup {
+        snippet = {
+            expand = function(args)
+                luasnip.lsp_expand(args.body)
+            end,
         },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-    },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    },
-}
+        mapping = cmp.mapping.preset.insert {
+            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete {},
+            ['<CR>'] = cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+            },
+            ['<Tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                else
+                    fallback()
+                end
+            end, { 'i', 's' }),
+            ['<S-Tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end, { 'i', 's' }),
+        },
+        sources = {
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+        },
+    }
+end
 -- vim: ts=2 sts=2 sw=2 et
 -- FIXME: Can't remember what this does
 vim.opt.backspace = "indent,eol,start"
