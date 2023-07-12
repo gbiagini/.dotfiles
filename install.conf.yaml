@@ -13,4 +13,5 @@
     ~/.zfunctions: zfunctions
     ~/.config/nvim/init.lua: init.lua
     ~/.config/nvim/colors: colors
+    ~/.gitignore: .gitignore
 ...
