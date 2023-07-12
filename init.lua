@@ -8,33 +8,33 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Add plugins
 require('lazy').setup({
-    'tpope/vim-fugitive',        -- Git commands in nvim
-    'tpope/vim-rhubarb',         -- Fugitive-companion to interact with github
-    'numToStr/Comment.nvim',     -- "gc" to comment visual regions/lines
-    'stevearc/oil.nvim',         -- More modern netrw
-    'navarasu/onedark.nvim',     -- Colorscheme
-    'nvim-lualine/lualine.nvim', -- Fancier statusline
+	{'tpope/vim-fugitive', cond = not vim.g.vscode},        -- Git commands in nvim
+	{'tpope/vim-rhubarb', cond = not vim.g.vscode},         -- Fugitive-companion to interact with github
+	{'numToStr/Comment.nvim', cond = not vim.g.vscode},     -- "gc" to comment visual regions/lines
+	{'stevearc/oil.nvim', cond = not vim.g.vscode},        -- More modern netrw
+	{'nvim-lualine/lualine.nvim', cond = not vim.g.vscode}, -- Fancier statusline
     -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
+	{'lukas-reineke/indent-blankline.nvim', cond = not vim.g.vscode},
     -- Add git related info in the signs columns and popups
-    'lewis6991/gitsigns.nvim',
-    'nvim-treesitter/nvim-treesitter',             -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter-textobjects', -- Additional textobjects for treesitter
-    'neovim/nvim-lspconfig',                       -- Collection of configurations for built-in LSP client
-    'williamboman/mason.nvim',                     -- Automatically install LSPs to stdpath for neovim
-    'williamboman/mason-lspconfig.nvim',           -- ibid
+	{'lewis6991/gitsigns.nvim', cond = not vim.g.vscode},
+	{'nvim-treesitter/nvim-treesitter', cond = not vim.g.vscode},             -- Highlight, edit, and navigate code
+	{'nvim-treesitter/nvim-treesitter-textobjects', cond = not vim.g.vscode},  -- Additional textobjects for treesitter
+	{'neovim/nvim-lspconfig', cond = not vim.g.vscode},                      -- Collection of configurations for built-in LSP client
+	{'williamboman/mason.nvim', cond = not vim.g.vscode},                    -- Automatically install LSPs to stdpath for neovim
+	{'williamboman/mason-lspconfig.nvim', cond = not vim.g.vscode},          -- ibid
     {                                              -- Autocompletion
         'hrsh7th/nvim-cmp',
         dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+	cond = not vim.g.vscode
     },
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' }, cond = not vim.g.vscode },
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         -- NOTE: If you have trouble with this installation, refer to the README for telescope-fzf-native.
-        build = 'make',
+        build = 'make', cond = not vim.g.vscode
     },
-}, {})
+}, {cond = not vim.g.vscode})
 
 --Set highlight on search
 vim.o.hlsearch = false
@@ -65,8 +65,8 @@ vim.o.updatetime = 250
 vim.o.completeopt = 'menuone,noselect'
 
 --Set colorscheme (order is important here)
---vim.o.termguicolors = true
-vim.cmd.colorscheme("cyberpunk-neon")
+vim.o.termguicolors = true
+--vim.cmd.colorscheme("cyberpunk-neon")
 
 --Set statusbar
 require('lualine').setup {
