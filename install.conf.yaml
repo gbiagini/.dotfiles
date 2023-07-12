@@ -10,6 +10,7 @@
     ~/.zshrc: zshrc
     ~/.zaliases: zaliases
     ~/.p10k.zsh: p10k.zsh
-    ~/.vimrc: vimrc
     ~/.zfunctions: zfunctions
+    ~/.config/nvim/init.lua: init.lua
+    ~/.config/nvim/colors: colors
 ...

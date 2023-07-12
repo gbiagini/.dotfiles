@@ -125,6 +125,9 @@ export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 export PATH="$PATH:/home/nomad/.local/bin"
 
+# add Julia to PATH
+export PATH="$PATH:/usr/local/julia/bin"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
