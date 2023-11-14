@@ -27,9 +27,9 @@ fi
 
 [ -d "$proj" ] || "Directory $proj does not exist" || return 1
 
-mkdir -p ~/.mambaforge/envs/$name/etc/conda/activate.d
-mkdir -p ~/.mambaforge/envs/$name/etc/conda/deactivate.d
+mkdir -p ~/miniforge/envs/$name/etc/conda/activate.d
+mkdir -p ~/miniforge/envs/$name/etc/conda/deactivate.d
 
-touch ~/.mambaforge/envs/$name/etc/conda/activate.d/set_wd.sh ; echo "cd $proj" > ~/.mambaforge/envs/$name/etc/conda/activate.d/set_wd.sh
-touch ~/.mambaforge/envs/$name/etc/conda/deactivate.d/unset_wd.sh ; echo "cd" > ~/.mambaforge/envs/$name/etc/conda/deactivate.d/unset_wd.sh
+touch ~/miniforge/envs/$name/etc/conda/activate.d/set_wd.sh ; echo "cd $proj" > ~/miniforge/envs/$name/etc/conda/activate.d/set_wd.sh
+touch ~/miniforge/envs/$name/etc/conda/deactivate.d/unset_wd.sh ; echo "cd" > ~/miniforge/envs/$name/etc/conda/deactivate.d/unset_wd.sh
 mamba activate $name
