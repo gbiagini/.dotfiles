@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/nomad/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -30,14 +30,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -52,8 +51,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -77,7 +77,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting)
+plugins=(git)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -105,57 +106,26 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# CUSTOM VARIABLES
-export EDITOR="vim"
-export WINFS="/mnt/c/Users/giobi/"
-export DJANGO_DEVELOPMENT='true'
-export CYPRESS="dbiagini@cypress1.tulane.edu"
-export CYPRESS2="dbiagini@cypress2.tulane.edu"
-export QB2="nomad@qb.loni.org"
-export QB3="nomad@qbc.loni.org"
-export TERM="xterm-256color"
-export MAMBA_NO_LOW_SPEED_LIMIT=1
-
-# Turn off shared history between tmux panes
-setopt nosharehistory
-
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-export PATH="$PATH:/home/nomad/.local/bin"
-
-# add Julia to PATH
-export PATH="$PATH:/usr/local/julia/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-# CUSTOM ALIASES
-source ~/.zaliases
-
-# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
-[[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nomad/.mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/gbiagini/.miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/nomad/.mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/nomad/.mambaforge/etc/profile.d/conda.sh"
+    if [ -f "/Users/gbiagini/.miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/gbiagini/.miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/nomad/.mambaforge/bin:$PATH"
+        export PATH="/Users/gbiagini/.miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/home/nomad/.mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/nomad/.mambaforge/etc/profile.d/mamba.sh"
+if [ -f "/Users/gbiagini/.miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/Users/gbiagini/.miniforge3/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
 
-fpath=(~/.zfunctions $fpath);
-autoload -U $fpath[1]/*(.:t)
